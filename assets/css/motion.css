@@ -1,5 +1,7 @@
 /* Optional motion and image compositions. All resting content is visible. */
 html { scroll-behavior: auto; }
+/* Fractional browser scaling can round a pinned stage up by one pixel. */
+body { overflow-x: clip; }
 .hero-stage { position: relative; background: var(--paper); }
 .hero-scroll { overflow-x: clip; }
 .scroll-scene-hint { display: none; }
