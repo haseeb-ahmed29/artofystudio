@@ -42,6 +42,9 @@
   }
 
   function initReveals() {
+    // GSAP owns these transforms when available. This observer remains the
+    // small progressive fallback if the optional motion dependencies fail.
+    if (window.gsap && window.ScrollTrigger) return;
     const sections = [...document.querySelectorAll('.reveal')];
     const paths = [...document.querySelectorAll('.process-path')];
     const showSection = element => {

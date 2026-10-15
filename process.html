@@ -8,7 +8,16 @@
 <meta name="theme-color" content="#F7F3EB">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<script src="assets/vendor/gsap.min.js" defer>
+</script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer>
+</script>
 <script src="assets/js/main.js" defer>
+</script>
+<script src="assets/js/scroll-motion.js" defer>
+</script>
+<script type="module" src="assets/js/pencil-cursor.js">
 </script>
 </head>
 <body class="page-process">
@@ -31,7 +40,7 @@
 </nav>
 </div>
 </header>
-<main id="main">
+<main id="main" data-drawing-area>
 <section class="page-intro wrap">
 <div class="section-meta">
 <span class="eyebrow">04 / FROM IDEA TO ILLUSTRATION</span>
@@ -85,13 +94,20 @@
 </div>
 <aside class="process-art">
 <figure class="paper-frame">
+<picture>
+<source type="image/webp" srcset="assets/images/character-illustration-480.webp 480w, assets/images/character-illustration-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/character-illustration.jpg" alt="Dark-haired character with glasses and a green cap surrounded by cyan energy" width="1156" height="1536" fetchpriority="high">
+</picture>
 <span class="tape" aria-hidden="true">
 </span>
 <figcaption>Character Illustration <span>Finished original artwork</span>
 </figcaption>
 </figure>
 <div class="process-note">
+<figure class="process-tools">
+<img src="assets/images/studio-tools.svg" width="400" height="280" loading="lazy" alt="Decorative drawing of studio pencils, eraser and ruler">
+<figcaption>Drawing tools · Interface illustration</figcaption>
+</figure>
 <span class="handnote">An idea becomes a character.</span>
 <p>Bring references. Share the little details. Let’s find the feeling of your illustration together.</p>
 <svg class="pencil-doodle" viewBox="0 0 160 80" fill="none" aria-hidden="true">
@@ -101,13 +117,17 @@
 </div>
 </aside>
 </section>
-<section class="closing wrap reveal">
+<section class="closing wrap">
+<span class="handnote closing-note" data-closing-accent>one good idea is all it takes</span>
 <span class="eyebrow">THE NEXT PAGE IS YOURS</span>
 <h2>Ready for page one?</h2>
 <p>Tell me about the character or scene you’d like to bring to life.</p>
 <a class="button" href="contact.html">Let’s create together<span aria-hidden="true"> ↗</span>
 </a>
-<span class="closing-star" aria-hidden="true">✳</span>
+<svg class="closing-pencil" viewBox="0 0 220 80" aria-hidden="true">
+<path d="m18 61 151-47 9 25-151 32-15-1 6-9Zm9 10 151-32M169 14l18-6 10 25-19 6M12 70l10-3"/>
+<path d="M38 77q83-30 169-15" class="closing-pencil-stroke"/>
+</svg>
 </section>
 </main>
 <footer class="site-footer">

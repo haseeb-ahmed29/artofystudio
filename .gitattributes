@@ -7,6 +7,7 @@
 *.py text eol=lf
 *.jpg binary
 *.woff2 binary
+*.webp binary
 # Preserve upstream library and license text verbatim.
 assets/vendor/** -whitespace
 assets/fonts/licenses/** -whitespace

@@ -8,7 +8,16 @@
 <meta name="theme-color" content="#F7F3EB">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<script src="assets/vendor/gsap.min.js" defer>
+</script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer>
+</script>
 <script src="assets/js/main.js" defer>
+</script>
+<script src="assets/js/scroll-motion.js" defer>
+</script>
+<script type="module" src="assets/js/pencil-cursor.js">
 </script>
 </head>
 <body class="page-about">
@@ -31,7 +40,7 @@
 </nav>
 </div>
 </header>
-<main id="main">
+<main id="main" data-drawing-area>
 <section class="page-intro wrap">
 <div class="section-meta">
 <span class="eyebrow">02 / BEHIND THE PENCIL</span>
@@ -43,16 +52,28 @@
 <p class="lede">A studio for the characters, moments, and worlds that deserve a life beyond your imagination.</p>
 </section>
 <section class="wrap about-editorial">
-<figure class="about-main-art paper-frame">
+<div class="about-art-collage" data-collage>
+<figure data-parallax="0.35" class="about-main-art paper-frame collage-layer">
+<picture>
+<source type="image/webp" srcset="assets/images/fantasy-warrior-480.webp 480w, assets/images/fantasy-warrior-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/fantasy-warrior.jpg" alt="Bearded fantasy traveler with a red cloak and pipe resting in a forest" width="1536" height="1536" fetchpriority="high">
+</picture>
 <span class="tape" aria-hidden="true">
 </span>
 <figcaption>Fantasy Warrior <span>Character design • Fantasy</span>
 </figcaption>
 </figure>
+<figure class="about-collage-detail paper-frame collage-layer" data-parallax="-0.6">
+<img src="assets/images/anime-knight-armor-detail.webp" width="800" height="600" loading="lazy" alt="Detail of the silver armor in Anime Knight">
+<figcaption>Detail from Anime Knight</figcaption>
+</figure>
+</div>
 <div class="editorial-intro">
 <span class="handnote">Hello, from Artofy Studio.</span>
 <h2>Good art starts<br>with <em>your idea.</em>
+<svg class="pencil-underline" viewBox="0 0 300 18" aria-hidden="true">
+<path d="M3 12Q140 0 294 9M12 16Q150 6 280 13"/>
+</svg>
 </h2>
 <p>Anime illustrations, original characters, fantasy worlds—this is where they come together. Artofy Studio creates custom artwork shaped around your characters and your vision.</p>
 <p>From an expressive character to a scene filled with movement, the focus is on personality, careful detail, and an illustration that feels like it belongs to the world you imagined.</p>
@@ -94,7 +115,10 @@
 <section class="wrap detail-band">
 <figure>
 <div class="detail-crop">
+<picture>
+<source type="image/webp" srcset="assets/images/anime-knight-480.webp 480w, assets/images/anime-knight-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/anime-knight.jpg" alt="Blue-eyed knight in silver armor and a navy cloak against burgundy" width="1209" height="1536" loading="lazy" decoding="async">
+</picture>
 </div>
 <figcaption>Detail from Anime Knight · Original illustration</figcaption>
 </figure>
@@ -106,7 +130,8 @@
 </a>
 </div>
 </section>
-<section class="closing wrap reveal">
+<section class="closing wrap">
+<span class="handnote closing-note" data-closing-accent>one good idea is all it takes</span>
 <span class="eyebrow">THE NEXT PAGE IS YOURS</span>
 <h2>Let’s make something<br>
 <em>only you could imagine.</em>
@@ -114,7 +139,10 @@
 <p>A character, a moment, a whole new adventure. It starts with a conversation.</p>
 <a class="button" href="contact.html">Let’s create together<span aria-hidden="true"> ↗</span>
 </a>
-<span class="closing-star" aria-hidden="true">✳</span>
+<svg class="closing-pencil" viewBox="0 0 220 80" aria-hidden="true">
+<path d="m18 61 151-47 9 25-151 32-15-1 6-9Zm9 10 151-32M169 14l18-6 10 25-19 6M12 70l10-3"/>
+<path d="M38 77q83-30 169-15" class="closing-pencil-stroke"/>
+</svg>
 </section>
 </main>
 <footer class="site-footer">

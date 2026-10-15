@@ -8,7 +8,16 @@
 <meta name="theme-color" content="#F7F3EB">
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../assets/css/site.css">
+<link rel="stylesheet" href="../assets/css/motion.css">
+<script src="../assets/vendor/gsap.min.js" defer>
+</script>
+<script src="../assets/vendor/ScrollTrigger.min.js" defer>
+</script>
 <script src="../assets/js/main.js" defer>
+</script>
+<script src="../assets/js/scroll-motion.js" defer>
+</script>
+<script type="module" src="../assets/js/pencil-cursor.js">
 </script>
 </head>
 <body class="page-artwork">
@@ -31,7 +40,7 @@
 </nav>
 </div>
 </header>
-<main id="main">
+<main id="main" data-drawing-area>
 <div class="wrap breadcrumbs">
 <a href="../index.html">Home</a>
 <span aria-hidden="true">/</span>
@@ -49,7 +58,10 @@
 </section>
 <figure class="wrap full-artwork">
 <div class="full-artwork-paper">
+<picture>
+<source type="image/webp" srcset="../assets/images/fantasy-warrior-480.webp 480w, ../assets/images/fantasy-warrior-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="../assets/images/fantasy-warrior.jpg" alt="Bearded fantasy traveler with a red cloak and pipe resting in a forest" width="1536" height="1536" fetchpriority="high">
+</picture>
 </div>
 <figcaption>
 <span>Fantasy Warrior · Artofy Studio</span>

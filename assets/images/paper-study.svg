@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="280" viewBox="0 0 400 280" fill="none">
+  <title>Illustrated paper study</title>
+  <desc>Original decorative vector illustration of layered loose drawing sheets, construction lines and sketchbook notes. Interface illustration, not an original portfolio work or work in progress.</desc>
+  <defs>
+    <filter id="paper-shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="1" dy="5" stdDeviation="5" flood-color="#252321" flood-opacity=".09"/></filter>
+    <pattern id="paper-hatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><path d="M0 0v7" stroke="#252321" stroke-width=".65" opacity=".24"/></pattern>
+  </defs>
+  <g stroke="#252321" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m94 43 207 23-19 165-207-23Z" fill="#ece5d9" stroke="#c7bdac"/>
+    <path d="m74 53 214-16 13 176-214 16Z" fill="#f3ede2" stroke="#c9bfaf"/>
+    <g transform="rotate(-5 200 135)" filter="url(#paper-shadow)">
+      <path d="M104 37h201v192H104Z" fill="#fffdf7" stroke="#c4baaa"/>
+      <path d="M104 212h201m-185-158v145m172-145v145" stroke="#ded5c7" stroke-width=".7"/>
+      <path d="M129 69h61m-61 8h39" stroke="#9c9180" stroke-width="1.2"/>
+      <path d="M129 87h143" stroke="#ded5c7" stroke-width=".7"/>
+      <ellipse cx="200" cy="143" rx="40" ry="39" stroke="#b3a895" stroke-dasharray="2 4"/>
+      <path d="M200 94v101m-56-52h112" stroke="#b9ad9b" stroke-width=".65"/>
+      <path d="m174 132 24-22 27 19-4 34-25 13-25-15Z" fill="url(#paper-hatch)" stroke="#6f665a"/>
+      <path d="m174 132 22 15 29-18m-29 18v29" stroke="#6f665a"/>
+      <path d="M237 104c15-8 27-2 24 10m-2-13 3 13-12-2" stroke="#c74378"/>
+      <path d="m130 192 30-2m-30 7 52-2m51 3h35" stroke="#9c9180" stroke-width=".8"/>
+      <path d="M283 213v16l22-16Z" fill="#ece5d9" stroke="#c4baaa"/>
+      <path d="M283 213h22" stroke="#d4c9b8"/>
+      <path d="m159 32 62 3-2 16-61-2Z" fill="#d2c29c" fill-opacity=".65" stroke="none"/>
+    </g>
+    <g transform="rotate(8 118 174)" filter="url(#paper-shadow)">
+      <path d="M43 145h108v77H43Z" fill="#f2e1e5" stroke="#d6b6c1"/>
+      <path d="M57 165c9-3 16 2 23-1s13-5 20-1 14-4 21-1m-64 14c13-3 22 3 35 0m-35 11c13-4 34 3 51-1" stroke="#946c79" stroke-width=".8"/>
+      <path d="m126 193 3 6 7-1-5 5 3 7-6-4-6 4 2-7-5-5 7 1Z" stroke="#c74378" stroke-width=".8"/>
+      <path d="m72 139 42 2-1 13-42-2Z" fill="#d2c29c" fill-opacity=".65" stroke="none"/>
+    </g>
+    <path d="M323 173c17-5 23-16 18-28m-1 2-3-9-7 8" stroke="#b5a893" stroke-dasharray="3 4"/>
+    <path d="M314 56h12m-6-6v12m-273 38 8-8m-2 15h10" stroke="#c74378"/>
+    <path d="m157 248 107-6m-90 11 72-4" stroke="#b7ac9c" stroke-width=".8"/>
+  </g>
+</svg>

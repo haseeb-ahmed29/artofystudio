@@ -8,7 +8,16 @@
 <meta name="theme-color" content="#F7F3EB">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<script src="assets/vendor/gsap.min.js" defer>
+</script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer>
+</script>
 <script src="assets/js/main.js" defer>
+</script>
+<script src="assets/js/scroll-motion.js" defer>
+</script>
+<script type="module" src="assets/js/pencil-cursor.js">
 </script>
 </head>
 <body class="page-artwork">
@@ -31,7 +40,7 @@
 </nav>
 </div>
 </header>
-<main id="main">
+<main id="main" data-drawing-area>
 <section class="page-intro wrap">
 <div class="section-meta">
 <span class="eyebrow">01 / THE COLLECTION</span>
@@ -43,12 +52,15 @@
 </section>
 <section class="wrap gallery-section" aria-label="Original artwork">
 <div class="gallery-grid">
-<article class="art-sheet art-sheet-1 reveal">
+<article class="art-sheet art-sheet-1" data-depth-sheet data-rest-angle="-1">
 <div class="paper-frame">
 <span class="tape" aria-hidden="true">
 </span>
 <a class="art-image" href="assets/images/fantasy-battle.jpg" data-lightbox data-title="Fantasy Battle" data-description="Multiple characters • Action scene" aria-label="View Fantasy Battle full size">
+<picture>
+<source type="image/webp" srcset="assets/images/fantasy-battle-480.webp 480w, assets/images/fantasy-battle-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/fantasy-battle.jpg" alt="Three fantasy fighters beneath a luminous full moon" width="1536" height="1536" loading="lazy" decoding="async">
+</picture>
 <span class="image-action" aria-hidden="true">View full size ↗</span>
 </a>
 </div>
@@ -63,12 +75,15 @@
 <a class="circle-link" href="artwork/fantasy-battle.html" aria-label="Read about Fantasy Battle">↗</a>
 </div>
 </article>
-<article class="art-sheet art-sheet-2 reveal">
+<article class="art-sheet art-sheet-2" data-depth-sheet data-rest-angle="-1">
 <div class="paper-frame">
 <span class="tape" aria-hidden="true">
 </span>
 <a class="art-image" href="assets/images/character-illustration.jpg" data-lightbox data-title="Character Illustration" data-description="Full-body • Custom character" aria-label="View Character Illustration full size">
+<picture>
+<source type="image/webp" srcset="assets/images/character-illustration-480.webp 480w, assets/images/character-illustration-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/character-illustration.jpg" alt="Dark-haired character with glasses and a green cap surrounded by cyan energy" width="1156" height="1536" loading="lazy" decoding="async">
+</picture>
 <span class="image-action" aria-hidden="true">View full size ↗</span>
 </a>
 </div>
@@ -83,12 +98,15 @@
 <a class="circle-link" href="artwork/character-illustration.html" aria-label="Read about Character Illustration">↗</a>
 </div>
 </article>
-<article class="art-sheet art-sheet-3 reveal">
+<article class="art-sheet art-sheet-3" data-depth-sheet data-rest-angle="-1">
 <div class="paper-frame">
 <span class="tape" aria-hidden="true">
 </span>
 <a class="art-image" href="assets/images/fantasy-warrior.jpg" data-lightbox data-title="Fantasy Warrior" data-description="Character design • Fantasy" aria-label="View Fantasy Warrior full size">
+<picture>
+<source type="image/webp" srcset="assets/images/fantasy-warrior-480.webp 480w, assets/images/fantasy-warrior-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/fantasy-warrior.jpg" alt="Bearded fantasy traveler with a red cloak and pipe resting in a forest" width="1536" height="1536" loading="lazy" decoding="async">
+</picture>
 <span class="image-action" aria-hidden="true">View full size ↗</span>
 </a>
 </div>
@@ -103,12 +121,15 @@
 <a class="circle-link" href="artwork/fantasy-warrior.html" aria-label="Read about Fantasy Warrior">↗</a>
 </div>
 </article>
-<article class="art-sheet art-sheet-4 reveal">
+<article class="art-sheet art-sheet-4" data-depth-sheet data-rest-angle="-1">
 <div class="paper-frame">
 <span class="tape" aria-hidden="true">
 </span>
 <a class="art-image" href="assets/images/anime-knight.jpg" data-lightbox data-title="Anime Knight" data-description="Character illustration • Armor" aria-label="View Anime Knight full size">
+<picture>
+<source type="image/webp" srcset="assets/images/anime-knight-480.webp 480w, assets/images/anime-knight-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/anime-knight.jpg" alt="Blue-eyed knight in silver armor and a navy cloak against burgundy" width="1209" height="1536" loading="lazy" decoding="async">
+</picture>
 <span class="image-action" aria-hidden="true">View full size ↗</span>
 </a>
 </div>
@@ -147,13 +168,17 @@
 <button type="button" data-next-art aria-label="Next artwork">→</button>
 </div>
 </dialog>
-<section class="closing wrap reveal">
+<section class="closing wrap">
+<span class="handnote closing-note" data-closing-accent>one good idea is all it takes</span>
 <span class="eyebrow">THE NEXT PAGE IS YOURS</span>
 <h2>A character of your own?</h2>
 <p>Let’s turn the idea in your head into an illustration made for you.</p>
 <a class="button" href="contact.html">Let’s create together<span aria-hidden="true"> ↗</span>
 </a>
-<span class="closing-star" aria-hidden="true">✳</span>
+<svg class="closing-pencil" viewBox="0 0 220 80" aria-hidden="true">
+<path d="m18 61 151-47 9 25-151 32-15-1 6-9Zm9 10 151-32M169 14l18-6 10 25-19 6M12 70l10-3"/>
+<path d="M38 77q83-30 169-15" class="closing-pencil-stroke"/>
+</svg>
 </section>
 </main>
 <footer class="site-footer">

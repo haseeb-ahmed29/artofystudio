@@ -8,9 +8,18 @@
 <meta name="theme-color" content="#F7F3EB">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<script src="assets/vendor/gsap.min.js" defer>
+</script>
+<script src="assets/vendor/ScrollTrigger.min.js" defer>
+</script>
 <script src="assets/js/main.js" defer>
 </script>
 <script type="module" src="assets/js/hero.js">
+</script>
+<script src="assets/js/scroll-motion.js" defer>
+</script>
+<script type="module" src="assets/js/pencil-cursor.js">
 </script>
 </head>
 <body class="page-index">
@@ -33,7 +42,9 @@
 </nav>
 </div>
 </header>
-<main id="main">
+<main id="main" data-drawing-area>
+<div id="hero-scroll" class="hero-scroll">
+<div class="hero-stage">
 <section class="home-hero wrap">
 <div class="hero-copy">
 <div class="eyebrow">
@@ -56,7 +67,7 @@
 <span>Original characters. Extraordinary stories.</span>
 </div>
 </div>
-<div class="hero-visual">
+<div class="hero-visual" data-no-draw>
 <div class="scene-label">
 <span class="handnote">a peek inside my sketchbook</span>
 <svg viewBox="0 0 90 52" aria-hidden="true">
@@ -75,7 +86,10 @@
 <span class="fallback-page-number">ARTOFY / FIELD NOTES</span>
 </div>
 <div class="fallback-page">
+<picture>
+<source type="image/webp" srcset="assets/images/fantasy-battle-480.webp 480w, assets/images/fantasy-battle-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
 <img class="" src="assets/images/fantasy-battle.jpg" alt="Three fantasy fighters beneath a luminous full moon" width="1536" height="1536" fetchpriority="high">
+</picture>
 <span class="handnote">Fantasy Battle — 01</span>
 </div>
 </div>
@@ -86,11 +100,21 @@
 </div>
 </div>
 <div class="scene-caption">
+<span class="hero-progress" aria-hidden="true">
+<i>
+</i>
+</span>
 <span>THE LIVING ARTIST’S SKETCHBOOK</span>
-<span class="handnote">move a little, look closer ↗</span>
+<span class="handnote scroll-scene-hint">scroll to turn the page ↓</span><span class="handnote static-scene-hint">a world worth exploring</span>
 </div>
 </div>
 </section>
+<div class="hero-scroll-note" aria-hidden="true">
+<span class="handnote">A new world on the next page.</span>
+<span data-hero-phase>01 / Open the sketchbook</span>
+</div>
+</div>
+</div>
 <div class="studio-strip">
 <div class="wrap">
 <span>ANIME ILLUSTRATION</span>
@@ -102,11 +126,11 @@
 <span>YOUR IMAGINATION</span>
 </div>
 </div>
-<section class="section wrap">
+<section class="section wrap selected-gallery">
 <div class="section-heading">
 <div>
-<span class="eyebrow">01 / SELECTED PAGES</span>
-<h2>A few worlds<br>from the studio.</h2>
+<span class="eyebrow">01 / FOUR ORIGINAL WORLDS</span>
+<h2>Four pages.<br>Endless imagination.</h2>
 </div>
 <div>
 <span class="handnote">made to be looked at closely</span>
@@ -115,14 +139,17 @@
 </a>
 </div>
 </div>
-<div class="selected-grid">
-<article class="art-sheet art-sheet-1 reveal">
+<div class="selected-grid depth-gallery">
+<article class="art-sheet art-sheet-1" data-depth-sheet data-rest-angle="-2">
 <div class="paper-frame">
 <span class="tape" aria-hidden="true">
 </span>
-<a class="art-image" href="artwork/fantasy-battle.html">
-<img class="" src="assets/images/fantasy-battle.jpg" alt="Three fantasy fighters beneath a luminous full moon" width="1536" height="1536" loading="lazy" decoding="async">
-<span class="image-action" aria-hidden="true">Explore artwork ↗</span>
+<a class="art-image" href="assets/images/fantasy-battle.jpg" data-lightbox data-title="Fantasy Battle" data-description="Multiple characters • Action scene" aria-label="View Fantasy Battle full size">
+<picture>
+<source type="image/webp" srcset="assets/images/fantasy-battle-480.webp 480w, assets/images/fantasy-battle-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
+<img src="assets/images/fantasy-battle.jpg" alt="Three fantasy fighters beneath a luminous full moon" width="1536" height="1536" loading="lazy" decoding="async">
+</picture>
+<span class="image-action" aria-hidden="true">Look closer ↗</span>
 </a>
 </div>
 <div class="art-caption">
@@ -136,13 +163,16 @@
 <a class="circle-link" href="artwork/fantasy-battle.html" aria-label="Read about Fantasy Battle">↗</a>
 </div>
 </article>
-<article class="art-sheet art-sheet-2 reveal">
+<article class="art-sheet art-sheet-2" data-depth-sheet data-rest-angle="2">
 <div class="paper-frame">
 <span class="tape" aria-hidden="true">
 </span>
-<a class="art-image" href="artwork/character-illustration.html">
-<img class="" src="assets/images/character-illustration.jpg" alt="Dark-haired character with glasses and a green cap surrounded by cyan energy" width="1156" height="1536" loading="lazy" decoding="async">
-<span class="image-action" aria-hidden="true">Explore artwork ↗</span>
+<a class="art-image" href="assets/images/character-illustration.jpg" data-lightbox data-title="Character Illustration" data-description="Full-body • Custom character" aria-label="View Character Illustration full size">
+<picture>
+<source type="image/webp" srcset="assets/images/character-illustration-480.webp 480w, assets/images/character-illustration-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
+<img src="assets/images/character-illustration.jpg" alt="Dark-haired character with glasses and a green cap surrounded by cyan energy" width="1156" height="1536" loading="lazy" decoding="async">
+</picture>
+<span class="image-action" aria-hidden="true">Look closer ↗</span>
 </a>
 </div>
 <div class="art-caption">
@@ -156,19 +186,100 @@
 <a class="circle-link" href="artwork/character-illustration.html" aria-label="Read about Character Illustration">↗</a>
 </div>
 </article>
+<article class="art-sheet art-sheet-3" data-depth-sheet data-rest-angle="1.3">
+<div class="paper-frame">
+<span class="tape" aria-hidden="true">
+</span>
+<a class="art-image" href="assets/images/fantasy-warrior.jpg" data-lightbox data-title="Fantasy Warrior" data-description="Character design • Fantasy" aria-label="View Fantasy Warrior full size">
+<picture>
+<source type="image/webp" srcset="assets/images/fantasy-warrior-480.webp 480w, assets/images/fantasy-warrior-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
+<img src="assets/images/fantasy-warrior.jpg" alt="Bearded fantasy traveler with a red cloak and pipe resting in a forest" width="1536" height="1536" loading="lazy" decoding="async">
+</picture>
+<span class="image-action" aria-hidden="true">Look closer ↗</span>
+</a>
+</div>
+<div class="art-caption">
+<div>
+<span class="art-number">03</span>
+<h3>
+<a href="artwork/fantasy-warrior.html">Fantasy Warrior</a>
+</h3>
+<p>Character design • Fantasy</p>
+</div>
+<a class="circle-link" href="artwork/fantasy-warrior.html" aria-label="Read about Fantasy Warrior">↗</a>
+</div>
+</article>
+<article class="art-sheet art-sheet-4" data-depth-sheet data-rest-angle="-1.5">
+<div class="paper-frame">
+<span class="tape" aria-hidden="true">
+</span>
+<a class="art-image" href="assets/images/anime-knight.jpg" data-lightbox data-title="Anime Knight" data-description="Character illustration • Armor" aria-label="View Anime Knight full size">
+<picture>
+<source type="image/webp" srcset="assets/images/anime-knight-480.webp 480w, assets/images/anime-knight-800.webp 800w" sizes="(max-width:767px) 90vw, (max-width:1100px) 45vw, 650px">
+<img src="assets/images/anime-knight.jpg" alt="Blue-eyed knight in silver armor and a navy cloak against burgundy" width="1209" height="1536" loading="lazy" decoding="async">
+</picture>
+<span class="image-action" aria-hidden="true">Look closer ↗</span>
+</a>
+</div>
+<div class="art-caption">
+<div>
+<span class="art-number">04</span>
+<h3>
+<a href="artwork/anime-knight.html">Anime Knight</a>
+</h3>
+<p>Character illustration • Armor</p>
+</div>
+<a class="circle-link" href="artwork/anime-knight.html" aria-label="Read about Anime Knight">↗</a>
+</div>
+</article>
+</div>
+</section>
+<section class="detail-story section wrap" aria-labelledby="detail-story-title">
+<div class="section-heading">
+<div>
+<span class="eyebrow">BETWEEN THE LINES</span>
+<h2 id="detail-story-title">Small details.<br>Whole personalities.</h2>
+</div>
+<p>Look closer at the finished illustrations.<br>A glance, a texture, a piece of someone’s world.</p>
+</div>
+<div class="detail-story-grid">
+<figure class="detail-note" data-detail-reveal>
+<a href="artwork/anime-knight.html">
+<img src="assets/images/anime-knight-armor-detail.webp" width="800" height="600" loading="lazy" decoding="async" alt="Close detail of silver armor and blue fabric from Anime Knight">
+</a>
+<figcaption>01 / Detail from Anime Knight</figcaption>
+</figure>
+<figure class="tools-note" data-detail-reveal>
+<img src="assets/images/studio-tools.svg" width="400" height="280" loading="lazy" alt="Decorative line illustration of a pencil, ruler, eraser and paper">
+<figcaption>Studio tools · Interface illustration</figcaption>
+<span class="handnote">the tools are simple.<br>the possibilities aren’t.</span>
+</figure>
+<figure class="detail-note" data-detail-reveal>
+<a href="artwork/fantasy-warrior.html">
+<img src="assets/images/fantasy-warrior-face-detail.webp" width="800" height="600" loading="lazy" decoding="async" alt="Close detail of the bearded traveler and forest from Fantasy Warrior">
+</a>
+<figcaption>02 / Detail from Fantasy Warrior</figcaption>
+</figure>
 </div>
 </section>
 <section class="about-preview section wrap">
-<div class="small-art paper-frame">
-<img class="" src="assets/images/anime-knight.jpg" alt="Blue-eyed knight in silver armor and a navy cloak against burgundy" width="1209" height="1536" loading="lazy" decoding="async">
+<div class="studio-collage" data-collage>
+<img class="collage-paper collage-layer" data-parallax="-0.6" src="assets/images/paper-study.svg" width="400" height="280" loading="lazy" alt="Decorative illustration of layered sketchbook sheets">
+<figure class="collage-feature paper-frame collage-layer" data-parallax="0.7">
+<img src="assets/images/character-illustration-outfit-detail.webp" width="800" height="600" loading="lazy" decoding="async" alt="Detail of the blue outfit from Character Illustration">
 <span class="tape" aria-hidden="true">
 </span>
-<span class="handnote photo-note">personality in every detail</span>
+<figcaption>Detail from Character Illustration</figcaption>
+</figure>
+<span class="handnote photo-note collage-layer" data-parallax="1">personality in every detail</span>
 </div>
 <div class="about-preview-copy">
 <span class="eyebrow">02 / BEHIND THE PENCIL</span>
 <h2>For the characters<br>you can’t stop<br>
 <em>imagining.</em>
+<svg class="pencil-underline" viewBox="0 0 300 18" aria-hidden="true">
+<path d="M3 12Q140 0 294 9M12 16Q150 6 280 13"/>
+</svg>
 </h2>
 <p>Artofy Studio is a space for anime illustration, original characters, and fantasy artwork. Your ideas become custom illustrations with thoughtful details and a personality of their own.</p>
 <a class="text-link" href="about.html">Meet the studio<span aria-hidden="true"> ↗</span>
@@ -215,14 +326,38 @@
 </a>
 </div>
 </section>
-<section class="closing wrap reveal">
+<section class="closing wrap">
+<span class="handnote closing-note" data-closing-accent>one good idea is all it takes</span>
 <span class="eyebrow">THE NEXT PAGE IS YOURS</span>
 <h2>An idea in mind?<br>Let’s give it a world.</h2>
 <p>A character, a moment, a whole new adventure. It starts with a conversation.</p>
 <a class="button" href="contact.html">Let’s create together<span aria-hidden="true"> ↗</span>
 </a>
-<span class="closing-star" aria-hidden="true">✳</span>
+<svg class="closing-pencil" viewBox="0 0 220 80" aria-hidden="true">
+<path d="m18 61 151-47 9 25-151 32-15-1 6-9Zm9 10 151-32M169 14l18-6 10 25-19 6M12 70l10-3"/>
+<path d="M38 77q83-30 169-15" class="closing-pencil-stroke"/>
+</svg>
 </section>
+<dialog id="art-lightbox" aria-labelledby="lightbox-title" aria-describedby="lightbox-description">
+<div class="lightbox-top">
+<span id="lightbox-count">
+</span>
+<button type="button" data-close-lightbox aria-label="Close artwork viewer">Close ×</button>
+</div>
+<div class="lightbox-image-wrap">
+<img id="lightbox-image" alt="" width="1536" height="1536">
+</div>
+<div class="lightbox-bottom">
+<button type="button" data-previous-art aria-label="Previous artwork">←</button>
+<div>
+<h2 id="lightbox-title">
+</h2>
+<p id="lightbox-description">
+</p>
+</div>
+<button type="button" data-next-art aria-label="Next artwork">→</button>
+</div>
+</dialog>
 </main>
 <footer class="site-footer">
 <div class="wrap">

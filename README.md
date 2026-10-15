@@ -2,6 +2,16 @@
 
 A complete, buildless anime artist portfolio with eleven real HTML pages. The redesign follows **The Living Artist’s Sketchbook**: warm paper, graphite, restrained pink, layered artwork sheets, handwritten annotations, and a locally rendered Three.js sketchbook.
 
+## Motion and image upgrade
+
+The homepage now has ten image placements: four complete works, three labelled details of finished illustrations, two original SVG interface illustrations, and the hero image. Twelve optimized WebPs and two SVGs are added. The four original JPEGs remain unchanged. See [asset provenance](assets/ASSETS.md).
+
+`assets/js/scroll-motion.js` uses locally pinned GSAP/ScrollTrigger 3.13.0 and `gsap.matchMedia()`. A stable desktop hero stage pins for 140vh of additional native scroll travel. One reversible timeline drives a camera approach, a curved two-sided page around the spine, and a lifting artwork sheet. `assets/css/motion.css` adds gallery depth, collage parallax, package entrances, pencil underlines, and a progressive process path. The existing observer is retained as a dependency-failure fallback.
+
+`assets/js/pencil-cursor.js` owns the fine-pointer pencil and transparent Canvas 2D overlay. Its exported `PENCIL_CONFIG` exposes sensitivity, memory caps, a 2,500ms hold, and a 400ms fade. Each completed group ages independently. Text, controls, forms, artwork, and modals keep native interaction. Empty drawing surfaces temporarily suppress selection so doodles can start there; entering text restores normal text selection. No pointer capture, click prevention, smooth-scroll library, or touch-scroll replacement is used.
+
+Below 768px, long pinning and hover tilt are removed. Reduced motion disables turns, parallax, drawing, and entrances. Failed 3D never creates a long empty pin. The existing GitHub Pages configuration (`main`, `/`) is preserved; the live project is [Artofy Studio](https://haseeb-ahmed29.github.io/artofystudio/index.html).
+
 ## Preview locally
 
 From this repository, run:
@@ -36,7 +46,7 @@ Each detail page includes breadcrumbs, previous/next artwork, return-to-gallery 
 
 - `assets/css/site.css`: shared responsive visual system and reduced-motion styles.
 - `assets/js/main.js`: mobile menu, progressive section reveals, gallery dialog, and inquiry form.
-- `assets/js/hero.js`: homepage-only Three.js enhancement. Original artwork uses an unlit, non-tone-mapped texture to preserve its colors. Resolution is capped, motion is disabled for reduced motion, and rendering pauses offscreen or in a hidden tab.
+- `assets/js/hero.js`: homepage-only Three.js scene with compact complete-art textures, a physical two-sided page turn, and a lifting sheet. Textures use unlit, non-tone-mapped materials. One renderer caps resolution, pauses offscreen/when hidden, and respects reduced motion.
 - `assets/images/`: four original JPEGs, preserved byte for byte. The original embedded images and root `artwork-01.jpg` through `artwork-04.jpg` were identical; their verified semantic filenames replace both sources without recompression.
 - `assets/fonts/`: self-hosted Outfit, Inter, and Caveat Latin variable fonts with OFL licenses and provenance.
 - `assets/vendor/`: pinned Three.js 0.169.0 / r169 and its MIT license. No CDN is required at runtime.
@@ -56,6 +66,8 @@ Without JavaScript, the complete site content, navigation, full-image/detail lin
 ```sh
 python scripts/check.py
 node scripts/check-interactions.mjs
+node scripts/check-cursor.mjs
+python scripts/check-upgrade.py
 node --check assets/js/main.js
 node --check assets/js/hero.js
 ```

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="280" viewBox="0 0 400 280" fill="none">
+  <title>Illustrated drawing tools</title>
+  <desc>Original decorative vector illustration of pencils, a ruler, an eraser and paper sheets. Interface illustration, not portfolio artwork or a studio photograph.</desc>
+  <defs>
+    <filter id="shadow" x="-30%" y="-30%" width="170%" height="180%"><feDropShadow dx="1" dy="4" stdDeviation="4" flood-color="#252321" flood-opacity=".09"/></filter>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(-22)"><path d="M0 0v6" stroke="#252321" stroke-width=".6" opacity=".25"/></pattern>
+  </defs>
+  <g stroke="#252321" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round">
+    <path d="m87 62 202-16 13 163-202 17Z" fill="#ece5d9" stroke="#bcb3a5" transform="rotate(5 195 138)"/>
+    <path d="m91 49 197 14-11 163L80 212Z" fill="#fffdf7" stroke="#c4bcaf" filter="url(#shadow)"/>
+    <path d="m112 86 132 9m-135 9 153 11m-156 9 113 8m-116 9 149 10" stroke="#d4ccbf" stroke-width=".8"/>
+    <path d="M222 181c-15-23-49-28-69-13-17 13-11 37 7 47 24 14 57-1 64-21" stroke="#b4a995" stroke-dasharray="3 5"/>
+    <path d="m249 184 12-3-5 13" stroke="#c74378"/>
+    <g transform="rotate(-24 200 146)" filter="url(#shadow)">
+      <path d="M52 151h286v26H52Z" fill="#e9d9b5" fill-opacity=".75" stroke="#a09379"/>
+      <path d="M62 151v15m12-15v8m12-8v8m12-8v8m12-8v15m12-15v8m12-8v8m12-8v8m12-8v15m12-15v8m12-8v8m12-8v8m12-8v15m12-15v8m12-8v8m12-8v8m12-8v15m12-15v8m12-8v8m12-8v8m12-8v15m12-15v8m12-8v8" stroke="#8b806c" stroke-width=".7"/>
+      <circle cx="325" cy="164" r="3.5" stroke="#a09379"/>
+    </g>
+    <g transform="rotate(26 200 134)" filter="url(#shadow)">
+      <path d="M176 28h11v202h-11Z" fill="#45413b"/>
+      <path d="M176 28h4v202h-4Z" fill="#70675d" stroke="none"/>
+      <path d="m176 230 5.5 24 5.5-24" fill="#d4b78e" stroke="#8d785c"/>
+      <path d="m179.8 247 1.7 7 1.7-7" fill="#252321" stroke="#252321"/>
+      <path d="M176 26h11v16h-11Z" fill="#d0c2a9"/>
+      <path d="M176 16q5.5-4 11 0v10h-11Z" fill="#c74378" stroke="#a43361"/>
+      <path d="M178 32h7m-7 4h7" stroke="#9b8f7b" stroke-width=".7"/>
+      <path d="M193 60h8v153h-8Z" fill="#d9be8b" stroke="#9c855d"/>
+      <path d="m193 213 4 20 4-20" fill="#d4b78e" stroke="#9c855d"/>
+      <path d="m195.8 228 1.2 5 1.2-5" fill="#252321"/>
+      <path d="M197 61v148" stroke="#b1996d" stroke-width=".7"/>
+    </g>
+    <g transform="rotate(-12 300 212)" filter="url(#shadow)">
+      <path d="M270 201q0-4 5-4h43q5 0 5 4v22q0 4-5 4h-43q-5 0-5-4Z" fill="#c74378" fill-opacity=".7" stroke="#a94f70"/>
+      <path d="M291 197h20v30h-20Z" fill="#f7f3eb" stroke="#bcb3a5"/>
+      <path d="M296 203h10m-10 4h10m-10 4h7" stroke="#b7aa97" stroke-width=".7"/>
+    </g>
+    <path d="M58 58c-9 8-10 19-3 27m-5-35-9-4m13 3-1-10m263 42 13-7m-7 16 11 3" stroke="#c74378" opacity=".75"/>
+    <path d="m73 243 43-4m-38 9 38-4" stroke="#a99c89" stroke-width=".8"/>
+    <path d="M340 122h13m-6.5-6.5v13" stroke="#c74378"/>
+  </g>
+</svg>
