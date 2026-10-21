@@ -1,81 +1,246 @@
 # Artofy Studio
 
-A complete, buildless anime artist portfolio with eleven real HTML pages. The redesign follows **The Living Artist’s Sketchbook**: warm paper, graphite, restrained pink, layered artwork sheets, handwritten annotations, and a locally rendered Three.js sketchbook.
+A complete, buildless anime artist portfolio with eleven real HTML pages. The redesign follows **The Living Artist’s Sketchbook**: warm paper tone, graphite details, restrained pink accents, layered artwork sheets, handwritten annotations, and an interactive 3D WebGL sketchbook.
 
-## Motion and image upgrade
+---
 
-The homepage now has ten image placements: four complete works, three labelled details of finished illustrations, two original SVG interface illustrations, and the hero image. Twelve optimized WebPs and two SVGs are added. The four original JPEGs remain unchanged. See [asset provenance](assets/ASSETS.md).
+## Table of Contents
 
-`assets/js/scroll-motion.js` uses locally pinned GSAP/ScrollTrigger 3.13.0 and `gsap.matchMedia()`. A stable desktop hero stage pins for 140vh of additional native scroll travel. One reversible timeline drives a camera approach, a curved two-sided page around the spine, and a lifting artwork sheet. `assets/css/motion.css` adds gallery depth, collage parallax, package entrances, pencil underlines, and a progressive process path. The existing observer is retained as a dependency-failure fallback.
+- [Overview](#overview)
+- [Directory Structure](#directory-structure)
+- [Page Inventory](#page-inventory)
+- [System Architecture & Design Principles](#system-architecture--design-principles)
+- [JavaScript Modules & APIs](#javascript-modules--apis)
+  - [1. `assets/js/main.js`](#1-assetsjsmainjs)
+  - [2. `assets/js/hero.js`](#2-assetsjsherojs)
+  - [3. `assets/js/scroll-motion.js`](#3-assetsjsscroll-motionjs)
+  - [4. `assets/js/pencil-cursor.js`](#4-assetsjspencil-cursorjs)
+- [CSS Visual & Motion System](#css-visual--motion-system)
+  - [`assets/css/site.css`](#assetscsssitecss)
+  - [`assets/css/motion.css`](#assetscssmotioncss)
+- [Inquiry & Commission Workflow](#inquiry--commission-workflow)
+- [Local Preview & Development](#local-preview--development)
+- [Verification & Automated Test Suite](#verification--automated-test-suite)
+  - [`scripts/check.py`](#scriptscheckpy)
+  - [`scripts/check-interactions.mjs`](#scriptscheck-interactionsmjs)
+  - [`scripts/check-cursor.mjs`](#scriptscheck-cursormjs)
+  - [`scripts/check-upgrade.py`](#scriptscheck-upgradepy)
+- [Asset Provenance & Licenses](#asset-provenance--licenses)
 
-`assets/js/pencil-cursor.js` owns the fine-pointer pencil and transparent Canvas 2D overlay. Its exported `PENCIL_CONFIG` exposes sensitivity, memory caps, a 2,500ms hold, and a 400ms fade. Each completed group ages independently. Text, controls, forms, artwork, and modals keep native interaction. Empty drawing surfaces temporarily suppress selection so doodles can start there; entering text restores normal text selection. No pointer capture, click prevention, smooth-scroll library, or touch-scroll replacement is used.
+---
 
-Below 768px, long pinning and hover tilt are removed. Reduced motion disables turns, parallax, drawing, and entrances. Failed 3D never creates a long empty pin. The existing GitHub Pages configuration (`main`, `/`) is preserved; the live project is [Artofy Studio](https://haseeb-ahmed29.github.io/artofystudio/index.html).
+## Overview
 
-## Preview locally
+Artofy Studio is an anime artist portfolio built directly on web standards with standard HTML, CSS, and modern JavaScript modules. It requires no build step, transpiler, bundler, or external package manager at runtime. It features:
 
-From this repository, run:
+- **11 Complete HTML Pages**: Fully functional, static navigation with relative paths ready for GitHub Pages or any static host.
+- **Interactive 3D WebGL Hero**: Built with local Three.js r169 featuring physical spread geometry, 2-sided page turning, curved paper deformation, and lifting artwork sheets.
+- **GSAP ScrollTrigger Animation System**: Smooth desktop pinning over 140vh scroll travel, depth gallery parallax, and stroke animations.
+- **Interactive Pencil Drawing Canvas**: ES module Canvas 2D engine with independent line group aging, strict memory bounds, and text/element protection.
+- **Accessible Lightbox & Form Processing**: Client-side validated mailto/clipboard inquiry workflow with focus containment and keyboard accessibility.
+- **Comprehensive Automated Test Suite**: Built-in Python and Node.js test scripts validating HTML structure, interaction logic, canvas cursor mechanics, and asset references.
 
-```sh
-python -m http.server 8000
+---
+
+## Directory Structure
+
+```
+artofystudio/
+├── README.md                      # Complete project documentation
+├── VERIFICATION.md                # Manual and visual browser check instructions
+├── UPGRADE-VERIFICATION.md        # Upgrade verification guidelines
+├── index.html                     # Homepage with 3D WebGL sketchbook and gallery
+├── artwork.html                   # Artwork gallery with accessible lightbox dialog
+├── about.html                     # Studio approach and detailed artwork breakdown
+├── commissions.html               # Commission packages and pricing
+├── process.html                   # 4-step workflow (Request → Discuss → Creation → Delivery)
+├── faq.html                       # Verified studio FAQs and accordion
+├── contact.html                   # Validated email inquiry form
+├── artwork/                       # Detail pages for individual portfolio works
+│   ├── fantasy-battle.html
+│   ├── character-illustration.html
+│   ├── fantasy-warrior.html
+│   └── anime-knight.html
+├── assets/
+│   ├── ASSETS.md                  # Detailed asset provenance
+│   ├── favicon.svg                # Studio favicon
+│   ├── paper-grain.svg            # Subtle paper background overlay
+│   ├── css/
+│   │   ├── site.css               # Visual foundation, layout, typography, base components
+│   │   └── motion.css             # Depth sheets, gallery perspective, GSAP motion styles
+│   ├── js/
+│   │   ├── main.js                # Menu, reveal observer, lightbox dialog, inquiry form
+│   │   ├── hero.js                # Three.js 3D sketchbook WebGL renderer
+│   │   ├── scroll-motion.js       # GSAP / ScrollTrigger scroll timeline owner
+│   │   └── pencil-cursor.js       # Interactive graphite canvas drawing module
+│   ├── images/                    # Preserved original JPEGs, WebP derivatives, detail SVGs
+│   ├── fonts/                     # Self-hosted Outfit, Inter, Caveat variable WOFF2 fonts
+│   └── vendor/                    # Local pinned dependencies (Three.js 0.169.0, GSAP, ScrollTrigger)
+└── scripts/                       # Comprehensive verification test suite
+    ├── check.py                   # Page structure, link, metadata & hash validation
+    ├── check-interactions.mjs     # Dialog, form validation, email draft & accessibility tests
+    ├── check-cursor.mjs           # Pencil cursor lifecycle, memory, and bounds tests
+    └── check-upgrade.py           # Asset & responsive media verification
 ```
 
-Open `http://localhost:8000/index.html`. On systems with Python named `python3`, use `python3 -m http.server 8000` instead. No package installation or build step is required. Use an HTTP server rather than opening `file://` URLs so the homepage ES module and textures can load.
+---
 
-The repository root is ready for ordinary static hosting, including GitHub Pages. All page navigation, fonts, scripts, and assets use relative paths, including the nested artwork pages. No additional hosting service or deployment account is required.
+## Page Inventory
 
-## Page inventory
+| File Path | Description | Key Features |
+| --- | --- | --- |
+| `index.html` | Portfolio Homepage | Interactive 3D sketchbook stage, featured artworks, studio intro, package previews |
+| `artwork.html` | Artwork Gallery | Asymmetric 4-work grid, accessible modal lightbox dialog with arrow navigation |
+| `about.html` | Studio About Page | Design philosophy, studio tools diagram, labelled artwork crop detail |
+| `commissions.html` | Packages & Pricing | Three commission packages (Sketch, Full Color, Premium Scene) and inquiry CTA links |
+| `process.html` | Studio Process | Illustrated 4-step workflow path with SVG line animation |
+| `faq.html` | Frequently Asked Questions | Native accessible summary/details accordion answering pricing, terms, and timeline |
+| `contact.html` | Contact & Inquiries | Validated email draft generator with auto-preselection and manual copy backup |
+| `artwork/fantasy-battle.html` | Artwork Detail Page | Complete Fantasy Battle artwork, story details, breadcrumbs, next/prev navigation |
+| `artwork/character-illustration.html` | Artwork Detail Page | Complete Character Illustration artwork, story details, breadcrumbs, next/prev navigation |
+| `artwork/fantasy-warrior.html` | Artwork Detail Page | Complete Fantasy Warrior artwork, story details, breadcrumbs, next/prev navigation |
+| `artwork/anime-knight.html` | Artwork Detail Page | Complete Anime Knight artwork, story details, breadcrumbs, next/prev navigation |
 
-| URL | Content |
-| --- | --- |
-| `index.html` | Interactive 3D sketchbook, selected artwork, introduction, commission preview |
-| `artwork.html` | Four-work asymmetric gallery and accessible full-image dialog |
-| `about.html` | Studio approach, original artwork, and a clearly labelled detail crop |
-| `commissions.html` | All three existing packages, prices, inclusions, and inquiry links |
-| `process.html` | Send Request → Discuss → Creation → Delivery |
-| `faq.html` | The complete, verified existing timing answer and contact invitation |
-| `contact.html` | Validated email-draft inquiry and copy/manual-copy alternative |
-| `artwork/fantasy-battle.html` | Complete Fantasy Battle artwork and original caption |
-| `artwork/character-illustration.html` | Complete Character Illustration artwork and original caption |
-| `artwork/fantasy-warrior.html` | Complete Fantasy Warrior artwork and original caption |
-| `artwork/anime-knight.html` | Complete Anime Knight artwork and original caption |
+---
 
-Each detail page includes breadcrumbs, previous/next artwork, return-to-gallery navigation, and a commission action. Every page has static navigation, a unique title, meta description, and main heading.
+## System Architecture & Design Principles
 
-## Files and dependencies
+1. **Buildless Standard Compliance**: Zero `node_modules` or build step required for deployment. All assets and vendor libraries are checked in and referenced relatively.
+2. **Progressive Enhancement**: Content is completely accessible without JavaScript. Standard standard `<summary>/<details>` HTML is used for accordions, standard links navigate between pages, and CSS handles core layouts. JavaScript adds optional interactivity (3D WebGL, scroll triggers, custom cursor, email draft composition).
+3. **Resilient Failure Fallbacks**: If WebGL is unsupported or fails, the 3D hero stage degrades gracefully to a responsive 2D illustration layout without empty pinned spacing. If GSAP fails, an `IntersectionObserver` handles section reveals.
+4. **Accessibility First (`a11y`)**:
+   - Focus trap and focus restoration inside dialog modals.
+   - Full keyboard navigation (`Escape`, `ArrowLeft`, `ArrowRight`, `Tab`).
+   - High-contrast typography and native input preservation.
+   - `prefers-reduced-motion` compliance across WebGL, GSAP, and Pencil drawing canvas.
 
-- `assets/css/site.css`: shared responsive visual system and reduced-motion styles.
-- `assets/js/main.js`: mobile menu, progressive section reveals, gallery dialog, and inquiry form.
-- `assets/js/hero.js`: homepage-only Three.js scene with compact complete-art textures, a physical two-sided page turn, and a lifting sheet. Textures use unlit, non-tone-mapped materials. One renderer caps resolution, pauses offscreen/when hidden, and respects reduced motion.
-- `assets/images/`: four original JPEGs, preserved byte for byte. The original embedded images and root `artwork-01.jpg` through `artwork-04.jpg` were identical; their verified semantic filenames replace both sources without recompression.
-- `assets/fonts/`: self-hosted Outfit, Inter, and Caveat Latin variable fonts with OFL licenses and provenance.
-- `assets/vendor/`: pinned Three.js 0.169.0 / r169 and its MIT license. No CDN is required at runtime.
+---
 
-Portfolio works retain their original titles, descriptions, composition, colors, and full-image proportions. Decorative SVGs and the 3D line study are interface illustrations, not additional portfolio work or evidence of an actual work in progress. Artwork shown beside package descriptions is not assigned to a particular package.
+## JavaScript Modules & APIs
 
-## Inquiry behavior
+### 1. `assets/js/main.js`
+Applies site-wide progressive enhancements upon `DOMContentLoaded`.
+- **`initMenu()`**: Handles responsive mobile drawer toggling (`aria-expanded`), backdrop escape key dismiss, and desktop viewport resets.
+- **`initReveals()`**: Standard `IntersectionObserver` fallback for element fade/slide triggers when GSAP is disabled or unavailable.
+- **`initLightbox()`**: Intercepts `data-lightbox` links, managing `<dialog id="art-lightbox">` modal display with index tracking, image counter updates, scroll locking, backdrop dismiss, and keyboard navigation.
+- **`initInquiry()`**: Validates form input fields (`name`, `email`, `type`, `details`, `reference`), preselects commission query param `?type=`, formats encoded `mailto:` drafts, and provides a clipboard/manual text copy fallback.
 
-There is no submission backend. **Open Email Draft** constructs an encoded draft to `artofystudio@gmail.com`; the visitor must review and send it from their email application. Nothing is reported as sent by the website. **Copy inquiry text** offers a manual-copy textarea if clipboard access is unavailable. Inputs stay intact after validation errors.
+### 2. `assets/js/hero.js`
+Renders an interactive WebGL 3D sketchbook using vendored Three.js r169 (`assets/vendor/three.module.js`).
+- **Scene Assembly**: Construct physical left/right book blocks, paper edge texturing, cloth bookmark, graphite line art overlay, desk surface, eraser, and pencil geometry.
+- **Curved Page & Advanced Turn Physics**: Uses vertex deformation routines (`pageHeight`, `curvedSheet`, `turningPicture`) to animate 2-sided page rotation around the book spine spine hinge.
+- **Lifting Artwork Sheet**: Animates a secondary artwork sheet rising as scroll progress advances into the final section phase.
+- **Performance & Safety**:
+  - Automatically pauses rendering when out of viewport or hidden (`IntersectionObserver` + `visibilitychange`).
+  - Caps resolution density dynamically based on device pixel ratio and viewport dimensions.
+  - Listens for context loss (`webglcontextlost`) and cleans up resources via `dispose()`.
 
-The three commission links preselect allowlisted `type` values: `sketch`, `full-color`, and `premium-scene`. Selection remains editable. Invalid query values are ignored.
+### 3. `assets/js/scroll-motion.js`
+Controls page motion timelines with pinned GSAP 3.13.0 and ScrollTrigger.
+- **`gsap.matchMedia()`**: Dynamically configures animation timelines based on device conditions (`min-width: 768px`, `hover: hover`, `prefers-reduced-motion`).
+- **Hero Pinning**: Pins `.hero-stage` for 140vh of scroll distance on desktop, publishing normalized progress `0..1` via custom `artofy:hero-progress` events to `hero.js`.
+- **Depth Gallery & Parallax**: Applies 3D tilt effects (`[data-depth-sheet]`), element entrance staggers (`.package-grid`), and SVG path drawing trigger animations (`.process-path`).
 
-Without JavaScript, the complete site content, navigation, full-image/detail links, native FAQ accordion, contact details, and static sketchbook remain available. The enhanced form actions stay disabled and a visible direct-email instruction provides the alternative.
+### 4. `assets/js/pencil-cursor.js`
+An ES module exporting `createPencilCursor({ window, document, config })` and `PENCIL_CONFIG`.
+- **Canvas 2D Overlay**: Appends a transparent full-screen overlay canvas (`.pencil-trails`) and pencil tip cursor (`.pencil-pointer`).
+- **Drawing Bounds & Protection**: Excludes protected interactive elements (`PROTECTED` selector list including buttons, inputs, links, headings, paragraphs, dialogs, artwork frames). Drawing is restricted to empty paper surfaces marked with `data-drawing-area`.
+- **Stroke Lifecycle & Memory Limits**:
+  - Strokes age individually: held for 2,500ms, then faded out over 400ms.
+  - Enforces strict memory caps (`maxGroups: 40`, `maxTotalPoints: 2400`, `maxGroupMs: 240`).
+  - Clears stale strokes on window scroll, resize, focus loss, selection, or modal open events.
 
-## Verification
+---
+
+## CSS Visual & Motion System
+
+### `assets/css/site.css`
+Contains design tokens, typography, layout grids, components, and media queries.
+- **Color Tokens**: `--paper` (`#F7F3EB`), `--ink` (`#252321`), `--pink` (`#C74378`), `--muted` (`#6B665F`), `--rule` (`#D8D1C6`), `--sheet` (`#FFFDF7`).
+- **Typography System**:
+  - `--display`: `Outfit, Arial, sans-serif`
+  - `--body`: `Inter, Arial, sans-serif`
+  - `--note`: `Caveat, 'Segoe Print', cursive`
+- **Responsive Components**: Site header navigation, commission package cards, artwork grid, detail page breadcrumbs, form controls, and accessible dialog styles.
+
+### `assets/css/motion.css`
+Enhances layout presentation with 3D transforms and motion triggers.
+- **Gallery Depth**: Establishes 3D perspective (`perspective: 1200px`), interactive tilt transforms (`rotateX`, `rotateY`), tape embellishments, and layered paper drop shadows.
+- **Process Line Drawing**: Configures CSS custom properties (`--path-length`) and stroke-dasharray properties for smooth animated process line reveals.
+
+---
+
+## Inquiry & Commission Workflow
+
+The inquiry form operates completely client-side without requiring a server submission backend:
+
+1. **Package Preselection**: Commission links from `commissions.html` pass query parameters (e.g. `contact.html?type=full-color`), which `main.js` pre-selects in the form field.
+2. **Client-Side Validation**: Real-time checking validates required inputs, email formatting, allowable commission types (`sketch`, `full-color`, `premium-scene`, `unsure`), and optional HTTP/HTTPS reference links.
+3. **Email Draft Generation**: Submitting constructs a pre-formatted email subject and body, then invokes `mailto:artofystudio@gmail.com`.
+4. **Copy Fallback**: If the email client fails to open or is blocked, an alternative **Copy inquiry text** button places formatted text directly into the user's clipboard or displays a pre-selected selectable text area.
+
+---
+
+## Local Preview & Development
+
+Because the site uses standard ES modules (`import`/`export`) and WebGL texture assets, view the site through an HTTP web server rather than the `file://` protocol.
+
+From the repository root, execute:
 
 ```sh
-python scripts/check.py
+python3 -m http.server 8000
+```
+
+Then open `http://localhost:8000/index.html` in any web browser.
+
+---
+
+## Verification & Automated Test Suite
+
+The codebase includes automated test scripts in the `scripts/` directory.
+
+Execute the full verification suite with:
+
+```sh
+python3 scripts/check.py
 node scripts/check-interactions.mjs
 node scripts/check-cursor.mjs
-python scripts/check-upgrade.py
+python3 scripts/check-upgrade.py
 node --check assets/js/main.js
 node --check assets/js/hero.js
 ```
 
-See [VERIFICATION.md](VERIFICATION.md) for the visual/browser checks and their scope. The Python check uses only the standard library. The Node interaction checks use `node:test`-style assertions and a VM with DOM stubs; they exercise the shipped script, and complement the actual browser checks.
+### `scripts/check.py`
+Validates repository integrity using Python standard library:
+- Confirms all 11 HTML pages exist and contain unique titles, headings, and meta descriptions.
+- Verifies 376+ relative internal link references across all files.
+- Checks cryptographic hashes of original portfolio JPEG artwork to guarantee zero accidental modification.
+- Ensures font licenses and commission package specifications are preserved.
 
-## Content still needed from the studio
+### `scripts/check-interactions.mjs`
+Node.js test suite using DOM stubs:
+- Tests inquiry form field validation, error focus, and ampersand/unicode mailto encoding.
+- Verifies package allowlist query preselection behavior.
+- Exercises the lightbox dialog focus trap, keyboard navigation (`ArrowLeft`, `ArrowRight`), and backdrop dismiss logic.
 
-The original FAQ contained placeholders for NSFW/commercial policy, deposit/payment terms, and refund/cancellation rules. They are omitted from published answers. The existing “Personal use” and “Commercial options” package inclusions remain, but no new licensing terms have been invented. Provide approved policies before adding those FAQ entries.
+### `scripts/check-cursor.mjs`
+Node.js test suite for the pencil drawing canvas:
+- Validates fine hover / reduced-motion pointer checks.
+- Confirms pointer tracking, segment stroke clearance, and line group hold/fade timings.
+- Asserts that protected element selectors (`a`, `button`, `input`, headings, artwork frames) never activate drawing cursors.
+- Tests bounded memory caps (`maxGroups`, `maxTotalPoints`) and destroy cleanup routines.
 
-The original social links were `#` placeholders. Add genuine destination URLs before displaying social links. Configure a real submission backend only if direct form delivery is wanted; the current email-draft workflow is complete and explicit.
+### `scripts/check-upgrade.py`
+Checks responsive image configurations and motion assets:
+- Verifies responsive Picture webp sources, detail crop images, and local vendor library paths.
+- Ensures no-JS fallbacks remain visible.
+
+---
+
+## Asset Provenance & Licenses
+
+- **Fonts**: Outfit, Inter, and Caveat variable fonts checked in locally under `assets/fonts/` under the SIL Open Font License (OFL).
+- **Libraries**:
+  - Three.js 0.169.0 (`assets/vendor/three.module.js`) - MIT License.
+  - GSAP & ScrollTrigger 3.13.0 (`assets/vendor/gsap.min.js`, `ScrollTrigger.min.js`) - GreenSock License.
+- **Artwork & Images**: Original artwork images preserved byte-for-byte in `assets/images/`. For detailed provenance records, see [`assets/ASSETS.md`](assets/ASSETS.md).
